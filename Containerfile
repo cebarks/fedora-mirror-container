@@ -9,9 +9,12 @@ RUN microdnf install -y \
         git-core \
     && microdnf clean all
 
+ARG QFM_COMMIT=ee1f19fd449e6db65e164cd052141836712162e9
 RUN git clone https://pagure.io/quick-fedora-mirror.git /opt/quick-fedora-mirror \
-    && chmod +x /opt/quick-fedora-mirror/quick-fedora-mirror \
-    && chmod +x /opt/quick-fedora-mirror/quick-fedora-hardlink
+    && cd /opt/quick-fedora-mirror \
+    && git checkout "$QFM_COMMIT" \
+    && chmod +x quick-fedora-mirror \
+    && chmod +x quick-fedora-hardlink
 
 COPY quick-fedora-mirror.conf /etc/quick-fedora-mirror.conf
 COPY sync-entrypoint.sh /usr/local/bin/sync-entrypoint.sh
