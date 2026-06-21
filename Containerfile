@@ -6,6 +6,7 @@ RUN microdnf install -y \
         curl \
         util-linux-core \
         python3 \
+        python-unversioned-command \
         git-core \
     && microdnf clean all
 
