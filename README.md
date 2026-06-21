@@ -69,6 +69,20 @@ The sync image is pre-built and pulled from `ghcr.io/cebarks/fedora-mirror-sync:
 | `SYNC_INTERVAL` | `21600` (6h) | Seconds between sync runs |
 | `MIRROR_DIR` | `/srv/fedora-mirror` | Host path for mirror data |
 | `MIRROR_PORT` | `8080` | Host port for HTTP access |
+| `CHECKIN_SITE` | *(optional)* | MirrorManager site name (enables automatic check-in) |
+| `CHECKIN_PASSWORD` | *(optional)* | MirrorManager site password |
+| `CHECKIN_HOST` | `$(hostname)` | MirrorManager host name (usually auto-detected) |
+
+## Private mirror with MirrorManager
+
+Register as a private mirror so dnf on your LAN automatically prefers your mirror — no client-side repo changes needed.
+
+1. Create an account at [Fedora Account System](https://accounts.fedoraproject.org)
+2. Log into [MirrorManager](https://mirrormanager.fedoraproject.org/) and create a **Site** (check the **Private** box)
+3. Create a **Host** under the site, add your HTTP URL, and add a **Site Netblock** with your LAN CIDR
+4. Set `CHECKIN_SITE` and `CHECKIN_PASSWORD` in your `.env` to match the site name and password from MirrorManager
+
+After each sync, `quick-fedora-mirror` will automatically report your mirror's content to MirrorManager. Clients on your netblock will be directed to your mirror via dnf's metalink.
 
 ## Client setup
 

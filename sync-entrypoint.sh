@@ -48,6 +48,14 @@ REMOTE=${RSYNC_REMOTE}
 FILTEREXP='(/i386|/armhfp|/ppc64/|/ppc64le|/s390x|/source|/SRPMS|/debug/|/releases/test${version_excludes})'
 EOF
 
+    if [[ -n "${CHECKIN_SITE:-}" ]]; then
+        cat >> "$QFM_RUNTIME_CONF" <<EOF
+CHECKIN_SITE=${CHECKIN_SITE}
+CHECKIN_PASSWORD=${CHECKIN_PASSWORD:-}
+CHECKIN_HOST=${CHECKIN_HOST:-$(hostname 2>/dev/null || echo localhost)}
+EOF
+    fi
+
     echo "Runtime config generated. Keeping releases: $(echo "$releases" | tr '\n' ' ')" >&2
 }
 
