@@ -118,13 +118,9 @@ Do not enable ZFS dedup — `quick-fedora-hardlink` handles deduplication at the
 
 ## Customization
 
-### Exclude ISOs/images
+### Include ISOs/images
 
-Add to the `FILTEREXP` in `quick-fedora-mirror.conf`:
-
-```
-\.iso|\.img|\.qcow2|\.raw\.xz|\.box
-```
+Non-ISO image files (`.img`, `.qcow2`, `.raw.xz`, `.box`) are excluded by default. ISOs are kept. To also exclude ISOs, add `\.iso` to the `FILTEREXP` in `quick-fedora-mirror.conf`.
 
 ### Mirror additional modules
 
