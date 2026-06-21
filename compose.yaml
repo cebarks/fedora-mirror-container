@@ -1,8 +1,6 @@
 services:
   sync:
-    build:
-      context: .
-      dockerfile: Containerfile
+    image: ghcr.io/cebarks/fedora-mirror-sync:latest
     restart: unless-stopped
     stop_grace_period: 60s
     environment:

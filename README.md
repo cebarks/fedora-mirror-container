@@ -39,7 +39,7 @@ Containerized private Fedora mirror — syncs from an upstream public mirror and
 4. **Start:**
 
    ```bash
-   podman-compose up -d
+   docker compose up -d
    ```
 
    The first sync will take a long time (hours to days depending on bandwidth). The nginx container will start serving once the first sync completes.
@@ -47,8 +47,19 @@ Containerized private Fedora mirror — syncs from an upstream public mirror and
 5. **Check status:**
 
    ```bash
-   podman-compose logs -f sync
+   docker compose logs -f sync
    ```
+
+## TrueNAS Scale deployment
+
+To deploy as a custom app on TrueNAS Scale:
+
+1. Clone this repo onto your TrueNAS system or copy the `compose.yaml`, `nginx.conf`, and `.env` files
+2. Set `MIRROR_DIR` to a dataset path (e.g., `/mnt/pool/fedora-mirror`)
+3. Ensure the dataset is owned by UID 1000: `chown 1000:1000 /mnt/pool/fedora-mirror`
+4. Deploy via the Custom App feature using the compose file
+
+The sync image is pre-built and pulled from `ghcr.io/cebarks/fedora-mirror-sync:latest` — no build step required.
 
 ## Configuration
 
