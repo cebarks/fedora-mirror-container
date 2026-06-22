@@ -8,6 +8,8 @@ RUN microdnf install -y \
         python3 \
         python-unversioned-command \
         git-core \
+        diffutils \
+        hostname \
     && microdnf clean all
 
 ARG QFM_COMMIT=ee1f19fd449e6db65e164cd052141836712162e9
