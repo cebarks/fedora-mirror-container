@@ -10,6 +10,7 @@ RUN microdnf install -y \
         git-core \
         diffutils \
         hostname \
+        bzip2 \
     && microdnf clean all
 
 ARG QFM_COMMIT=ee1f19fd449e6db65e164cd052141836712162e9
