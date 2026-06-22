@@ -54,6 +54,7 @@ EOF
 CHECKIN_SITE=${CHECKIN_SITE}
 CHECKIN_PASSWORD=${CHECKIN_PASSWORD:-}
 CHECKIN_HOST=${CHECKIN_HOST:-$(hostname 2>/dev/null || echo localhost)}
+MIRRORMANAGER=https://mirrormanager.fedoraproject.org/xmlrpc
 EOF
     fi
 
